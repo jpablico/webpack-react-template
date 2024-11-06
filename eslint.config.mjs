@@ -1,38 +1,24 @@
 import globals from "globals";
 import pluginJs from "@eslint/js";
 import pluginReact from "eslint-plugin-react";
+import pluginPrettier from "eslint-plugin-prettier";
 
-
-/** @type {import('eslint').Linter.Config[]} */
+/** @type {import('eslint').Linter.FlatConfig[]} */
 export default [
-  {files: ["**/*.{js,mjs,cjs,jsx}"]},
-  {languageOptions: { globals: {...globals.browser, ...globals.node} }},
-  pluginJs.configs.recommended,
-  pluginReact.configs.flat.recommended,
-];
-
-module.exports = {
-  env: {
-    browser: true,
-    node: true,
-    es2021: true,
-  },
-  extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:prettier/recommended', // Enables Prettier rules as part of ESLint
-  ],
-  parserOptions: {
-    ecmaVersion: 12,
-    sourceType: 'module',
-  },
-  settings: {
-    react: {
-      version: 'detect',
+  {
+    files: ["**/*.{js,mjs,cjs,jsx}"], // Files to lint
+    languageOptions: {
+      globals: { ...globals.browser, ...globals.node }, // Support both browser and Node.js environments
+      ecmaVersion: 2021,
+      sourceType: "module",
+    },
+    plugins: {
+      prettier: pluginPrettier,
+    },
+    rules: {
+      "prettier/prettier": "error", // Prettier errors are shown by ESLint
     },
   },
-  plugins: ['react', 'prettier'], // Adds Prettier as a plugin
-  rules: {
-    'prettier/prettier': 'error', // Shows Prettier issues as ESLint errors
-  },
-};
+  pluginJs.configs.recommended, // Base ESLint rules
+  pluginReact.configs.flat.recommended, // React-specific rules
+];

@@ -1,10 +1,13 @@
 {
 	"name": "webpack-template",
 	"version": "1.0.0",
-	"description": "A reusable template for Webpack-based projects",
+	"description": "A reusable template for Webpack with Prettier and ESLint.",
 	"main": "index.js",
 	"scripts": {
-		"install-dependencies": "npm install webpack webpack-cli webpack-dev-server mini-css-extract-plugin css-loader sass sass-loader babel-loader @babel/core @babel/preset-env @babel/preset-react file-loader html-webpack-plugin ignore-emit-webpack-plugin --save-dev",
+		"install-dependencies": "npm install webpack webpack-cli webpack-dev-server mini-css-extract-plugin css-loader sass sass-loader babel-loader @babel/core @babel/preset-env @babel/preset-react file-loader html-webpack-plugin ignore-emit-webpack-plugin eslint prettier eslint-config-prettier eslint-plugin-prettier --save-dev",
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix",
+		"format": "prettier --write \"src/**/*.{js,jsx,css,scss,html}\"",
 		"start": "webpack serve --open",
 		"build": "webpack --mode production",
 		"dev": "webpack --mode development",
@@ -12,6 +15,7 @@
 	},
 	"author": "Josh Pablico",
 	"license": "MIT",
+	"dependencies": {},
 	"devDependencies": {
 		"@eslint/js": "^9.14.0",
 		"eslint": "^9.14.0",
