@@ -6,7 +6,7 @@ const App = () => {
     console.log('Component mounted');
   }, []);
 
-  return <h1>Hello, World!</h1>;
+  return <h1 className="title">Hello, World!</h1>;
 };
 
 const container = document.getElementById('app');
